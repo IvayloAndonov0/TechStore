@@ -1,15 +1,38 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useForm } from "../../hooks/useForm.js";
 import { useRegister } from "../../hooks/useAuth.js";
+import { useState } from "react";
 export default function Register() {
+    const [error, setError] = useState("");
+    const emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ ;
+    const navigate = useNavigate();
     const register = useRegister();
     const {values,changeHandler,submitHandler} = useForm({username:"",email: "",password: "",repass:""},
         ({email,password,username,repass})=>{
-        register(username,email,password,repass);
+            try {
+                setError("");
+                if(username==""||email==""||password==""||repass==""){
+                    setTimeout(() => setError("All fields are required!"), 0);
+                    return;
+                }
+                if (!emailRegEx.test(email)) {
+                    setTimeout(() => setError("Invalid email format!"), 0);
+                    return;
+                  }
+                if(password !== repass){
+                    setTimeout(() => setError("Passwords do not match!"), 0);
+                    return;
+                }
+                register(username,email,password,repass);
+                navigate("/auth/login");
+            } catch (error) {
+                setError(error.message);
+            }
     });
 
     return (
         <>
+        {error && <div><div className="errorContainer"><p>{error}</p> </div></div>}
          <section className="register-hero">
         <div className="container">
             <h2>Create Your Account</h2>

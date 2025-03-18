@@ -3,10 +3,13 @@ import authApi from "../api/authApi.js";
 export const useRegister = () => {
     const registerHandler = async (username,email,password,repass) => {
         try {
-            const result = await authApi.register(email,password);
-            console.log(result);
-            
+            if(password !== repass){
+                throw new Error("Passwords do not match!");
+            }
+            const result = await authApi.register(username,email,password);
+            return result;
         } catch (error) {
+            console.log(error.message);
             
         }
     };
