@@ -4,7 +4,7 @@ import authController from "./controller/authController.js";
 
 const routes = Router();
 routes.use(homeConroller);
-routes.use(`/users`,authController)
+routes.use(`/auth`,authController)
 routes.get(`*`,(req,res)=>{
     res.render(`404`);
 });
