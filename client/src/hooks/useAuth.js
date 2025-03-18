@@ -15,3 +15,14 @@ export const useRegister = () => {
     };
     return registerHandler;
 }
+export const useLogin = () => {
+    const loginHandler = async (email,password) => {
+        try {
+            const result = await authApi.login(email,password);
+            return result;
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+    return loginHandler;
+}

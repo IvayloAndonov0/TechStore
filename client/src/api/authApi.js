@@ -7,4 +7,8 @@ export default {
         const result = requester.post(baseUrl+`/register`,{username,email,password});
         return result;
     },
+    login(email, password) {
+        const result = requester.post(baseUrl+`/login`,{email,password});
+        return result;
+    },
 }
