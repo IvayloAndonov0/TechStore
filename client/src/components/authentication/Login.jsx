@@ -1,26 +1,27 @@
+import { Link } from "react-router";
 export default function Login() {
     return (
         <>
-        <section class="login-hero">
-        <div class="container">
+        <section className="login-hero">
+        <div className="container">
             <h2>Login to Your Account</h2>
             <p>Access your order history, track orders, and more.</p>
         </div>
     </section>
 
-    <section class="login-form">
-        <div class="container">
+    <section className="login-form">
+        <div className="container">
             <form  method="POST">
-                <div class="form-group">
+                <div className="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="" />
+                    <input type="email" id="email" name="email"  />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password"/>
                 </div>
-                <button type="submit" class="btn">Login</button>
-                <p>Don't have an account? <a href="/auth/register">Register</a></p>
+                <button type="submit" className="btn">Login</button>
+                <p>Don't have an account? <Link to="/auth/register">Register</Link></p>
             </form>
         </div>
     </section>

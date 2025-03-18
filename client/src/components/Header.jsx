@@ -1,22 +1,22 @@
+import { Link } from "react-router";
 export default function Header() {
     return (
         <>
             <header>
-                <div class="container">
+                <div className="container">
                     <h1>TechStore</h1>
                     <nav>
                         <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/catalog">Catalog</a></li>
-                            <li><a href="/about">About</a></li>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/tech">Catalog</Link></li>
+                            <li><Link to="/about">About</Link></li>
 
-                            <li><a href="/profile">Profile</a></li>
-                            <li><a href="/device/create">Create Offer</a></li>
-                            <li><a href="/auth/logout">Logout</a></li>
+                            <li><Link to="/profile">Profile</Link></li>
+                            <li><Link to="/tech/create">Create Offer</Link></li>
+                            
 
-                            <li><a href="/auth/login">Login</a></li>
-                            <li><a href="/auth/register">Register</a></li>
-
+                            <li><Link to="/auth/login">Login</Link></li>
+                            <li><Link to="/auth/register">Register</Link></li>
                         </ul>
                     </nav>
                 </div>

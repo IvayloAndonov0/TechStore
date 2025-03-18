@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 export default function Home() {
     return (
         <>
@@ -5,7 +6,7 @@ export default function Home() {
                 <div className="container">
                     <h2>Your One-Stop Shop for Laptops and Computers</h2>
                     <p>Find the best deals on the latest laptops, desktops, and accessories.</p>
-                    <a href="/catalog" className="btn">Shop Now</a>
+                    <Link to="/tech" className="btn">Shop Now</Link>
                 </div>
             </section>
 
@@ -18,7 +19,7 @@ export default function Home() {
                             <img src="" />
                             <h3></h3>
                             <p></p>
-                            <a href="" className="btn">View Details</a>
+                            <Link to="" className="btn">View Details</Link>
                         </div>
 
                         <p className="no-post">There haven't been any devices posted yet.</p>

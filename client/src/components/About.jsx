@@ -1,15 +1,15 @@
 export default function About() {
     return (
         <>
-        <section class="about-hero">
-        <div class="container">
+        <section className="about-hero">
+        <div className="container">
             <h2>About TechStore</h2>
             <p>Your trusted source for the latest in laptops, desktops, and accessories.</p>
         </div>
     </section>
 
-    <section class="about-content">
-        <div class="container">
+    <section className="about-content">
+        <div className="container">
             <h3>Our Story</h3>
             <p>TechStore was founded in 2025 with a mission to provide high-quality technology products at competitive
                 prices. Our team of experts is dedicated to sourcing the latest and greatest in laptops, desktops, and

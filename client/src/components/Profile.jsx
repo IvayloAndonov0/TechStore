@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 export default function Profile() {
     return (
         <>
@@ -17,7 +18,7 @@ export default function Profile() {
                     <img src="" alt="Laptop"/>
                     <p><strong>Brand:</strong> </p>
                     <p><strong>Model:</strong> </p>
-                    <a href="" className="btn">View Details</a>
+                    <Link to="" className="btn">View Details</Link>
                 </div>
                 <p className="no-post">You haven't created a post yet</p>
                 
@@ -34,7 +35,7 @@ export default function Profile() {
                     <img src=""alt="Laptop"/>
                     <p><strong>Brand:</strong> </p>
                     <p><strong>Model:</strong> </p>
-                    <a href="" className="btn">View Details</a>
+                    <Link to="" className="btn">View Details</Link>
                 </div>
                
                 <p className="no-post">You haven't preferred any devices yet</p>
