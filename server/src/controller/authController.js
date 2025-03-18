@@ -5,14 +5,14 @@ const authController = Router();
 
 authController.post(`/register`, async (req, res) => {
     const userData = req.body;
-
+    
     const user = await authService.register(userData);
 
     res.send(JSON.stringify(user));
 });
 authController.post(`/login`, async (req, res) => {
 
-    const { email, password } = req.body;
+    const {email, password } = req.body;
     try {
         const token = await authService.login(email, password);
         const user = await authService.getUser(email, password);
