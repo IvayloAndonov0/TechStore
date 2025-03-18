@@ -20,7 +20,7 @@ export default {
 
         const isValid = await bcrypt.compare(password, user.password);
         if (!isValid) {
-            throw new Error({status:404,message:error.message});
+            throw new Error('Invalid email or password!');
         }
 
         const payload = {

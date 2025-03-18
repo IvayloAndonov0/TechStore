@@ -19,7 +19,7 @@ authController.post(`/login`, async (req, res) => {
         res.send(JSON.stringify({ user, token }));
     } catch (error) {
         console.log(error);
-        return res.send(JSON.stringify(error));
+        res.status(500).json({ error: error.message });
     }
 });
 
