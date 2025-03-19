@@ -26,7 +26,7 @@ export default function Register() {
                 register(username,email,password,repass);
                 navigate("/auth/login");
             } catch (error) {
-                setError(error.message);
+                setTimeout(() => setError(error.message), 0);
             }
     });
 

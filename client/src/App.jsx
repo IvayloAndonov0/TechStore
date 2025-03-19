@@ -11,13 +11,14 @@ import Details from './components/tech/Details'
 import Edit from './components/tech/Edit'
 import About from './components/About'
 import Profile from './components/Profile'
+import { AuthContextProvider } from './contexts/authContext'
 
 
 function App() {
 
-
   return (
     <>
+    <AuthContextProvider>
     <Header />
     <Routes>
       <Route path="/" element={<Home />} />
@@ -33,6 +34,7 @@ function App() {
 
       <Route path="*" element={<NotFound />} />
     </Routes>
+    </AuthContextProvider>
     </>
   )
 }

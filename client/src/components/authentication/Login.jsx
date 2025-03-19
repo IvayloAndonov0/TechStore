@@ -27,7 +27,7 @@ export default function Login() {
                     }
                     navigate("/");
                 } catch (error) {
-                    setError(error.message);
+                    ssetTimeout(() => setError(error.message), 0);
                 }
         });
     return (
