@@ -12,8 +12,9 @@ export function AuthContextProvider(props) {
     const [authState, setAuthState] = useState({});
     const changeAuthState = (state) => {
         localStorage.setItem("token", state.token);
-        localStorage.setItem("email", state.user.email);
-        localStorage.setItem("_id", state.user._id);
+        localStorage.setItem("email", state.email);
+        localStorage.setItem("_id", state._id);
+        
         setAuthState(state);
     }
     const contextData = {
