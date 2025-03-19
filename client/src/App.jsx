@@ -12,29 +12,30 @@ import Edit from './components/tech/Edit'
 import About from './components/About'
 import Profile from './components/Profile'
 import { AuthContextProvider } from './contexts/authContext'
+import { PrivateRoute, PublicRoute } from './utils/routeGuard'
 
 
 function App() {
 
   return (
     <>
-    <AuthContextProvider>
-    <Header />
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/tech" element={<Catalog />} />
-      <Route path="/auth/register" element={<Register />} />
-      <Route path="/auth/login" element={<Login />} />
-      <Route path="/about" element={<About />} />
+      <AuthContextProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/tech" element={<Catalog />} />
+          <Route path="/auth/register" element={<Register />} />
+          <Route path="/auth/login" element={<Login />} />
+          <Route path="/about" element={<About />} />
 
-      <Route path="/tech/create" element={<Create />} />
-      <Route path="/tech/:id/details" element={<Details />} />
-      <Route path="/tech/:id/edit" element={<Edit />} />
-      <Route path="/profile" element={<Profile />} />
+          <Route path="/tech/create" element={<PrivateRoute><Create /></PrivateRoute>} />
+          <Route path="/tech/:id/details" element={<PrivateRoute><Details /></PrivateRoute>} />
+          <Route path="/tech/:id/edit" element={<PrivateRoute><Edit /></PrivateRoute>} />
+          <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
 
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-    </AuthContextProvider>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </AuthContextProvider>
     </>
   )
 }
