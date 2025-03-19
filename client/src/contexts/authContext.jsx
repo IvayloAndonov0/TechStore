@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { useState } from 'react';
 export const AuthContext = createContext({
     email: ``,
@@ -28,4 +28,9 @@ export function AuthContextProvider(props) {
             {props.children}
         </AuthContext.Provider>
     )
+}
+
+export function useAuthContext() {
+    const authData = useContext(AuthContext);
+    return authData;
 }
