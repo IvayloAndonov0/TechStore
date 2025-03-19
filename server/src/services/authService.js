@@ -34,7 +34,7 @@ export default {
         return token
     },
     async getUser(email){
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email }).lean();
         if (!user) {
             throw new Error('Invalid email or password!');
         }

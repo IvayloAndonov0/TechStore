@@ -16,7 +16,7 @@ authController.post(`/login`, async (req, res) => {
     try {
         const token = await authService.login(email, password);
         const user = await authService.getUser(email, password);
-        res.send(JSON.stringify({ user, token }));
+        res.send(JSON.stringify({  ...user, token  }));
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: error.message });
