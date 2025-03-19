@@ -9,14 +9,21 @@ export const AuthContext = createContext({
 });
 
 export function AuthContextProvider(props) {
-    const [authState, setAuthState] = useState({});
+    const [authState, setAuthState] = useState(() => {
+       
+        const token = localStorage.getItem("token");
+        const email = localStorage.getItem("email");
+        const _id = localStorage.getItem("_id");
+
+        return token && email && _id ? { token, email, _id } : {};
+    });
+
     const changeAuthState = (state) => {
-        localStorage.setItem("token", state.token);
-        localStorage.setItem("email", state.email);
-        localStorage.setItem("_id", state._id);
-        
+            localStorage.setItem("token", state.token);
+            localStorage.setItem("email", state.email);
+            localStorage.setItem("_id", state._id);
         setAuthState(state);
-    }
+    };
     const contextData = {
         email: authState.email,
         token: authState.token,
