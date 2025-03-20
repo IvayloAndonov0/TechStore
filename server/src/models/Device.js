@@ -14,7 +14,7 @@ const deviceSchema = new Schema({
         ,minLength:2
     },
     hardDisk:{
-        type:Numbear,
+        type:Number,
         required:true,
         min:128
     },
