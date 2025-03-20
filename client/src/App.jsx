@@ -13,6 +13,7 @@ import About from './components/About'
 import Profile from './components/Profile'
 import { AuthContextProvider } from './contexts/authContext'
 import { PrivateRoute, PublicRoute } from './utils/routeGuard'
+import Logout from './components/authentication/Logout'
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/tech/:id/details" element={<PrivateRoute><Details /></PrivateRoute>} />
           <Route path="/tech/:id/edit" element={<PrivateRoute><Edit /></PrivateRoute>} />
           <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+          <Route path="/auth/logout" element={<PrivateRoute><Logout /></PrivateRoute>} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

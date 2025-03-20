@@ -11,4 +11,8 @@ export default {
         const result = requester.post(baseUrl+`/login`,{email,password});
         return result;
     },
+    logout(token){
+        const result = requester.post(baseUrl+`/logout`,null,token);
+        return result;
+    }
 }

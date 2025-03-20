@@ -2,7 +2,6 @@ import { Link } from "react-router";
 import { useAuthContext } from "../contexts/authContext";
 export default function Header() {
     const { isAuthenticated } = useAuthContext();
-    console.log(isAuthenticated);
     
     return (
         <>
@@ -18,6 +17,7 @@ export default function Header() {
                                 <>
                                     <li><Link to="/profile">Profile</Link></li>
                                     <li><Link to="/tech/create">Create Offer</Link></li>
+                                    <li><Link to="/auth/logout">Logout</Link></li>
                                 </>
                             )} 
                             {!isAuthenticated && (
