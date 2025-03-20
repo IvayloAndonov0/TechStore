@@ -22,6 +22,16 @@ authController.post(`/login`, async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
+authController.post(`/logout`, authMiddleware, async (req, res) => {
+    const token = req.headers.authorization;
+    try {
+        await authService.logout(token);
+        res.send(JSON.stringify({ message: 'Logged out!' }));
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: error.message });
+    }
+});
 
 
 export default authController;

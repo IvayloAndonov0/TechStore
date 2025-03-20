@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken"
 import "dotenv/config";
 
 const secret = process.env.JWT_SECRET;
+const blacklist = [];
 
 
 export default {
@@ -39,5 +40,12 @@ export default {
             throw new Error('Invalid email or password!');
         }
         return user;
+    },
+    logout(token) {
+        blacklist.push(token); 
+        return { message: "Logged out successfully" };
+    },
+    isTokenBlacklisted(token) {
+        return blacklist.includes(token);
     }
 }

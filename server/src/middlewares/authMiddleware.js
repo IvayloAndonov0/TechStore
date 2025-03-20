@@ -1,19 +1,25 @@
 import jwt from "jsonwebtoken";
 import "dotenv/config";
+import authService from "../services/authService.js";
 const secret = process.env.JWT_SECRET;
-export const authMiddleware = ( req, res, next ) => {
+export const authMiddleware = (req, res, next) => {
   const authHeader = req.headers['authorization'];
-  console.log(authHeader);
   const token = authHeader;
-  
-  
 
-  if (!token) return res.status(401).json({ error: "Access Denied" });
 
-  jwt.verify(token,secret, (err, user) => {
-      if (err) return res.status(403).json({ error: "Invalid Token" });
-      req.user = user;
-      next();
+
+  if (!token) {
+    return res.status(401).json({ error: "Access Denied" })
+  };
+  if (authService.isTokenBlacklisted(token)) {
+    return res.status(401).json({ message: "Token is invalidated" });
+  };
+
+
+  jwt.verify(token, secret, (err, user) => {
+    if (err) return res.status(403).json({ error: "Invalid Token" });
+    req.user = user;
+    next();
   });
 };
 
@@ -21,7 +27,7 @@ export const authMiddleware = ( req, res, next ) => {
 export const isAuth = (req, res, next) => {
   if (!req.headers['authorization']) {
     return res.redirect('/auth/login');
-  } 
+  }
 
   next();
 }
