@@ -8,9 +8,8 @@ export default {
        });
        return result.lean();
     },
-
      getLast3(){
-        const results =  Device.find().sort({ _id: -1 }).limit(3);
+        const results =  Device.find().sort({ _id: -1 }).limit(3).lean();
         return results;
     },
     getAll(){
