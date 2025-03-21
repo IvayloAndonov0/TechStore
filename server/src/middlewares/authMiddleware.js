@@ -18,16 +18,6 @@ export const authMiddleware = (req, res, next) => {
 
   jwt.verify(token, secret, (err, user) => {
     if (err) return res.status(403).json({ error: "Invalid Token" });
-    req.user = user;
     next();
   });
 };
-
-
-export const isAuth = (req, res, next) => {
-  if (!req.headers['authorization']) {
-    return res.redirect('/auth/login');
-  }
-
-  next();
-}
