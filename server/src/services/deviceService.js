@@ -18,7 +18,7 @@ export default {
         return result;
     },
     getOne(id){
-        const result = Device.findById(id);
+        const result = Device.findById(id).lean();
         return result;
     },
     async preferOne(deviceId,userId){

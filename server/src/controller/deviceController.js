@@ -16,6 +16,16 @@ deviceRouter.post(`/create`, async (req, res) => {
         res.status(500).json({ error: error.message })
     }
 });
+deviceRouter.get(`/:id/details`, async (req, res) => {
+    const id = req.params.id;
+    try {
+        const device = await deviceService.getOne(id);
+        res.send(JSON.stringify(device));
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+
+});
 deviceRouter.get(`/latest`, async (req, res) => {
     try {
 
