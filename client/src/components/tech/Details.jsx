@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import techApi from "../../api/techApi";
 import { useAuthContext } from "../../contexts/authContext";
@@ -43,17 +43,19 @@ export default function Details() {
             </div>
      
             <div className="product-actions">
-                {userId === tech.owner ? (
-                    <>
-                        <button className="btn edit"><Link to={`/tech/${tech.id}/edit`}>Edit</Link></button>
-                        <button className="btn delete"><Link to={`/tech/${tech.id}/delete`}>Delete</Link></button>
-                    </>
-                ) : (
-                    <>
-                        <p className="prefer-message">You've already preferred this device</p>
-                        <button className="btn prefer"><Link to={`/prefer/${tech.id}`}>Prefer</Link></button>
-                    </>
-                )}
+                {userId ? (
+                    userId === tech.owner ? (
+                        <>
+                            <button className="btn edit"><Link to={`/tech/${tech._id}/edit`}>Edit</Link></button>
+                            <button className="btn delete"><Link to={`/tech/${tech._id}/delete`}>Delete</Link></button>
+                        </>
+                    ) : (
+                        <>
+                            <p className="prefer-message">You've already preferred this device</p>
+                            <button className="btn prefer"><Link to={`/prefer/${tech._idid}`}>Prefer</Link></button>
+                        </>
+                    )
+                ) : null}
             </div>
           
         </div>
