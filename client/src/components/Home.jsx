@@ -1,5 +1,15 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
+
+import techApi from "../api/techApi.js";
 export default function Home() {
+    const [tech, setTech] = useState([]);
+    useEffect(() => {
+        (async () => {
+            const devices = await techApi.getLatest();
+            setTech(devices);
+        })();
+    }, []);
     return (
         <>
             <section className="hero">
@@ -14,15 +24,15 @@ export default function Home() {
                 <div className="container">
                     <h2>Featured Products</h2>
                     <div className="product-grid">
-
-                        <div className="product-item">
-                            <img src="" />
-                            <h3></h3>
-                            <p></p>
-                            <Link to="" className="btn">View Details</Link>
-                        </div>
-
-                        <p className="no-post">There haven't been any devices posted yet.</p>
+                        {tech.length > 0 && tech.map((t, i) => (
+                            <div className="product-item" key={i}>
+                                <img src={t.imageUrl} />
+                                <h3>{t.brand} {t.model}</h3>
+                                <p>${t.price}</p>
+                                <Link to={`/tech/${t._id}/details`} className="btn">View Details</Link>
+                            </div>
+                        ))}
+                        {tech.length === 0 && <p className="no-post">There haven't been any devices posted yet.</p>}
 
                     </div>
                 </div>
