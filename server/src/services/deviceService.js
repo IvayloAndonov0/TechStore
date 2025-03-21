@@ -11,6 +11,7 @@ export default {
      getLast3(){
         const results =  Device.find().sort({ _id: -1 }).limit(3).lean();
         return results;
+        
     },
     getAll(){
         const result = Device.find();

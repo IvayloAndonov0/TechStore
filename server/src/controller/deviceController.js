@@ -18,8 +18,10 @@ deviceRouter.post(`/create`, async (req, res) => {
 });
 deviceRouter.get(`/latest`, async (req, res) => {
     try {
+
         const devices = await deviceService.getLast3();
         res.send(JSON.stringify(devices));
+        
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
