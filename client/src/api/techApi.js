@@ -7,5 +7,8 @@ export default {
     async getLatest(){
         const tech = await requester.get(baseUrl+`/latest`)
         return tech;
+    },
+    getOne(id){
+        return requester.get(baseUrl+`/${id}/details`)
     }
 }

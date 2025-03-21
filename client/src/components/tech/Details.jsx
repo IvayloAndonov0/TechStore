@@ -1,4 +1,18 @@
+import { use, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import techApi from "../../api/techApi";
+import { useAuthContext } from "../../contexts/authContext";
+
 export default function Details() {
+    const {id} = useParams();
+    const {userId} = useAuthContext();
+     const [tech, setTech] = useState([]);
+        useEffect(() => {
+            (async () => {
+                const device = await techApi.getOne(id);
+                setTech(device);   
+            })();
+        }, []);
     return (
         <>
          <section className="details-hero">
@@ -11,32 +25,35 @@ export default function Details() {
         <div className="container">
             <div className="product-details">
                 <div className="product-image">
-                    <img src="" alt=""/>
+                    <img src={tech.imageUrl} alt={tech.brand}/>
                 </div>
                 <div className="product-info">
-                    <h3>Brand: </h3>
-                    <p><strong>Model:</strong> </p>
-                    <p><strong>Hard Disk:</strong> </p>
-                    <p><strong>Screen Size:</strong> </p>
-                    <p><strong>RAM:</strong> </p>
-                    <p><strong>Operating System:</strong> </p>
-                    <p><strong>CPU:</strong> </p>
-                    <p><strong>GPU:</strong> </p>
-                    <p><strong>Price:</strong> $</p>
-                    <p><strong>Color:</strong> </p>
-                    <p><strong>Weight:</strong> </p>
+                    <h3>Brand: {tech.brand}</h3>
+                    <p><strong>Model: {tech.model}</strong> </p>
+                    <p><strong>Hard Disk: {tech.hardDisk} GB</strong> </p>
+                    <p><strong>Screen Size: {tech.screenSize}"</strong> </p>
+                    <p><strong>RAM: {tech.ram} GB</strong> </p>
+                    <p><strong>Operating System: {tech.os}</strong> </p>
+                    <p><strong>CPU: {tech.cpu}</strong> </p>
+                    <p><strong>GPU: {tech.gpu}</strong> </p>
+                    <p><strong>Price: {tech.price} лв </strong>  </p>
+                    <p><strong>Color: {tech.colour}</strong> </p>
+                    <p><strong>Weight: {tech.weight} g</strong> </p>
                 </div>
             </div>
      
             <div className="product-actions">
-
-                <button className="btn edit"><Link to="">Edit</Link></button>
-                <button className="btn delete"><Link to="">Delete</Link></button>
-
-                    <p className="prefer-message">You've already preferred this device</p>
-
-                <button className="btn prefer"><Link to=""Prefer></Link></button>
-
+                {userId === tech.owner ? (
+                    <>
+                        <button className="btn edit"><Link to={`/tech/${tech.id}/edit`}>Edit</Link></button>
+                        <button className="btn delete"><Link to={`/tech/${tech.id}/delete`}>Delete</Link></button>
+                    </>
+                ) : (
+                    <>
+                        <p className="prefer-message">You've already preferred this device</p>
+                        <button className="btn prefer"><Link to={`/prefer/${tech.id}`}>Prefer</Link></button>
+                    </>
+                )}
             </div>
           
         </div>

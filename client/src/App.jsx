@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router'
+import { Routes, Route } from 'react-router-dom'
 
 import Login from './components/authentication/Login'
 import Header from './components/Header'
@@ -30,7 +30,7 @@ function App() {
           <Route path="/about" element={<About />} />
 
           <Route path="/tech/create" element={<PrivateRoute><Create /></PrivateRoute>} />
-          <Route path="/tech/:id/details" element={<PrivateRoute><Details /></PrivateRoute>} />
+          <Route path="/tech/:id/details" element={<Details />} />
           <Route path="/tech/:id/edit" element={<PrivateRoute><Edit /></PrivateRoute>} />
           <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
           <Route path="/auth/logout" element={<PrivateRoute><Logout /></PrivateRoute>} />
