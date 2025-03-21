@@ -30,8 +30,8 @@ export const useLogin = () => {
     return loginHandler;
 }
 export const useLogout = () => {
-    const {logout} = useAuthContext(AuthContext);
-    const {token} = useAuthContext(AuthContext);
+    const {logout} = useAuthContext();
+    const {token} = useAuthContext();
     const logoutHandler = async () => {
         try {
             logout();

@@ -3,13 +3,15 @@ import { useState } from "react";
 
 import { useForm } from "../../hooks/useForm.js";
 import techApi from "../../api/techApi.js";
-import { AuthContext, useAuthContext } from "../../contexts/authContext.jsx";
+import {  useAuthContext } from "../../contexts/authContext.jsx";
 
 
 export default function Create() {
     const [error, setError] = useState("");
     const navigate = useNavigate();
-    const {_id,token} = useAuthContext(AuthContext);
+    const {token} = useAuthContext();
+    const {userId} = useAuthContext();
+    
     const {values,changeHandler,submitHandler} = useForm({
         brand:"",model: "",hardDisk: 0,screenSize:0,ram:0,os:"",
         cpu:"",gpu:"",price:0,colour:"",weight:0,imageUrl:""},
@@ -31,7 +33,7 @@ export default function Create() {
                         brand,model,hardDisk,screenSize,ram,
                         os,cpu,gpu,price,colour,weight,imageUrl
                     };
-                    await techApi.create({ ...data, ownerId: _id }, token);
+                     await techApi.create({ ...data, owner:  userId }, token);
                     navigate("/tech");
                 } catch (error) {
                     setTimeout(() => setError(error.message), 0);
