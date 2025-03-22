@@ -53,7 +53,7 @@ export default {
         return devices;
     },
     getUserPreffered(userId){
-        const devices = Device.find({preferrdList:userId});
+        const devices = Device.find({preferedList:userId});
         return devices;
     }
 

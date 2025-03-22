@@ -88,6 +88,17 @@ deviceRouter.post(`/created`,async (req,res) => {
     }
 
 });
+deviceRouter.post(`/prefered`,async (req,res) => {
+    const {userId} = req.body; 
+    try{
+        const prefered = await deviceService.getUserPreffered(userId);
+            
+        res.send(JSON.stringify({prefered}));
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+
+});
 
 
 
