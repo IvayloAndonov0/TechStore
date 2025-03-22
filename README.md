@@ -10,7 +10,6 @@ TechStore is a full-stack React application that serves as a marketplace for tec
 - **About Page** – Provides information about the company.
 - **Details Page** – Shows details about a specific tech offer.
 - **Login & Register** – Allows users to authenticate.
-- **Logout** – Logs out the user and redirects them appropriately.
 
 ### Private Pages (Authenticated Users Only)
 - **Create Page** – Users can create new tech offers.
