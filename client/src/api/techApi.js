@@ -14,4 +14,7 @@ export default {
     async getAll(){
         return requester.get(baseUrl+`/all`)
     },
+    updateone(id,data,token){
+        return requester.post(baseUrl+`/${id}/edit`,data,token)
+    }
 }

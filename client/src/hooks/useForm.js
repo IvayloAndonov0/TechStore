@@ -12,9 +12,17 @@ export function useForm(initialValues,submitCallback){
         e.preventDefault();
         submitCallback(values);
     };
+    const reset = (newValues = initialValues) => {
+        setValues((prev) => ({
+            ...prev, 
+            ...newValues,
+        }));
+    };
+
     return {
         values,
         changeHandler,
-        submitHandler
+        submitHandler,
+        reset
     }
 }
