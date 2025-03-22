@@ -10,5 +10,8 @@ export default {
     },
     getOne(id){
         return requester.get(baseUrl+`/${id}/details`)
-    }
+    },
+    async getAll(){
+        return requester.get(baseUrl+`/all`)
+    },
 }

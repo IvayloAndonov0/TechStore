@@ -52,7 +52,7 @@ export default function Details() {
                     ) : (
                         <>
                             <p className="prefer-message">You've already preferred this device</p>
-                            <button className="btn prefer"><Link to={`/prefer/${tech._id}`}>Prefer</Link></button>
+                            <button className="btn prefer"><Link to={`/tech/${tech._id}/prefer`}>Prefer</Link></button>
                         </>
                     )
                 ) : null}
