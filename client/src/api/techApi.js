@@ -25,5 +25,8 @@ export default {
     },
     preferOne(id,userId,token){
         return requester.post(baseUrl+`/${id}/prefer`,userId,token)
-    }
+    },
+    getPrefered(userId,token){
+        return requester.post(baseUrl+`/prefered`,userId,token);
+    },
 }

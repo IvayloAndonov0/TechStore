@@ -1,11 +1,27 @@
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../contexts/authContext";
+import { useEffect, useState } from "react";
+import techApi from "../api/techApi";
 export default function Profile() {
+    const [createdTech,setCreatedTech] = useState([]);
+    const[preferedTech,setPreferedTech] = useState([]);
+    const {username} = useAuthContext();
+    const {email} = useAuthContext();
+    const {userId} = useAuthContext();
+     useEffect(() => {
+                (async () => {
+                    const device = await techApi.getCreated({userId});
+                    const prefered = await techApi.getPrefered({userId});   
+                    setCreatedTech(device.created); 
+                    setPreferedTech(prefered.prefered)  
+                })();
+            }, []);
     return (
         <>
          <section className="profile-hero">
         <div className="container">
             <h2>User Profile</h2>
-            <p>Welcome back, <span id="username"></span> <strong id="email"></strong></p>
+            <p>Welcome back, {username} <span id="username"></span>({email}) <strong id="email"></strong></p>
         </div>
     </section>
 
@@ -13,14 +29,15 @@ export default function Profile() {
         <div className="container">
             <h3>Created Laptops</h3>
             <div className="laptop-list">
-                
-                <div className="laptop-item">
-                    <img src="" alt="Laptop"/>
-                    <p><strong>Brand:</strong> </p>
-                    <p><strong>Model:</strong> </p>
-                    <Link to="" className="btn">View Details</Link>
-                </div>
-                <p className="no-post">You haven't created a post yet</p>
+            {createdTech.map(device => (
+                     <div className="laptop-item" key={device._id}>
+                     <img src={device.imageUrl} alt="Laptop"/>
+                     <p><strong>Brand: {device.brand}</strong> </p>
+                     <p><strong>Model: {device.model}</strong> </p>
+                     <Link to={`/tech/${device._id}/details`} className="btn">View Details</Link>
+                 </div>
+                ))}
+                {createdTech.length === 0 && <p className="no-post">You haven't created a post yet</p>}
                 
             </div>
         </div>
@@ -30,15 +47,17 @@ export default function Profile() {
         <div className="container">
             <h3>Preferred Laptops</h3>
             <div className="laptop-list">
-                
-                <div className="laptop-item">
-                    <img src=""alt="Laptop"/>
-                    <p><strong>Brand:</strong> </p>
-                    <p><strong>Model:</strong> </p>
-                    <Link to="" className="btn">View Details</Link>
+                {preferedTech.map(device => (
+
+                <div className="laptop-item" key={device._id}>
+                    <img src={device.imageUrl} alt="Laptop"/>
+                    <p><strong>Brand: {device.brand}</strong> </p>
+                    <p><strong>Model: {device.model}</strong> </p>
+                    <Link to={`/tech/${device._id}/details`} className="btn">View Details</Link>
                 </div>
+                ))}
                
-                <p className="no-post">You haven't preferred any devices yet</p>
+                {preferedTech.length === 0 && <p className="no-post">You haven't preferred any devices yet</p>}
               
             </div>
 
