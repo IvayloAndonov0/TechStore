@@ -44,11 +44,6 @@ deviceRouter.get(`/all`, async (req, res) => {
         res.status(500).json({ error: error.message })
     }
 });
-
-deviceRouter.get(`/:id/edit`, async (req, res) => {
-    const id = req.params.id;
-    const device = await deviceService.getOne(id);
-});
 deviceRouter.get(`/:id/prefer`, async (req, res) => {
     const id = req.params.id;
     const userId = req.user.id;
@@ -59,12 +54,14 @@ deviceRouter.get(`/:id/prefer`, async (req, res) => {
     }
 });
 deviceRouter.post(`/:id/edit`, async (req, res) => {
-    const newdevice = req.body;
+    const updatedDevice = req.body;
     const id = req.params.id;
-    const userId = req.user.id;
+    const userId = updatedDevice.owner;
     try {
-        const device = await deviceService.updateOne(id, newdevice, userId);
+        const device = await deviceService.updateOne(id, updatedDevice, userId);
+        res.send(JSON.stringify({ message: 'Updated successfully!' }));
     } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 });
 deviceRouter.get(`/:id/delete`, async (req, res) => {

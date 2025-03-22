@@ -38,7 +38,7 @@ export default {
         if(!device.owner.equals(userId)){
             throw new Error(`Only owner can edit this offer!`);
         }
-       return Device.findByIdAndUpdate(deviceId,body,{runValidators:true});
+       return Device.findByIdAndUpdate(deviceId,body);
     },
     async deleteOne(deviceId,userId){
         const device = await Device.findById(deviceId);
