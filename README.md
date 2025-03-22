@@ -49,7 +49,7 @@ TechStore is a full-stack React application that serves as a marketplace for tec
 2. Start the frontend:
    ```sh
    cd client
-   npm start
+   npm run dev
    ```
 
 The application should now be running on `http://localhost:5173` (or another port if configured).
