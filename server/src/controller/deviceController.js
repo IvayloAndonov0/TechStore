@@ -64,13 +64,18 @@ deviceRouter.post(`/:id/edit`, async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-deviceRouter.get(`/:id/delete`, async (req, res) => {
+deviceRouter.post(`/:id/delete`, async (req, res) => {
     const id = req.params.id;
-    const userId = req.user.id;
+    console.log(id);
+    const userId = req.body;
+    console.log(`user: ${userId}`);
+    
+    
     try {
-        const result = await deviceService.deleteOne(id, userId);
+        const result = await deviceService.deleteOne(id,);
+        res.send(JSON.stringify({ message: 'Deleted successfully!' }));
     } catch (error) {
-
+        res.status(500).json({ error: error.message });
     }
 });
 

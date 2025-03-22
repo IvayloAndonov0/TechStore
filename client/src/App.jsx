@@ -14,6 +14,7 @@ import Profile from './components/Profile'
 import { AuthContextProvider } from './contexts/authContext'
 import { PrivateRoute, PublicRoute } from './utils/routeGuard'
 import Logout from './components/authentication/Logout'
+import Delete from './components/tech/Delete'
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/tech/create" element={<PrivateRoute><Create /></PrivateRoute>} />
           <Route path="/tech/:id/details" element={<Details />} />
           <Route path="/tech/:id/edit" element={<PrivateRoute><Edit /></PrivateRoute>} />
+          <Route path="/tech/:id/delete" element={<PrivateRoute><Delete /></PrivateRoute>} />
           <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
           <Route path="/auth/logout" element={<PrivateRoute><Logout /></PrivateRoute>} />
 

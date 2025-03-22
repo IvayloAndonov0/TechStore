@@ -16,5 +16,8 @@ export default {
     },
     updateone(id,data,token){
         return requester.post(baseUrl+`/${id}/edit`,data,token)
+    },
+    deleteOne(id,userId,token){
+        return requester.post(baseUrl+`/${id}/delete`,userId,token)
     }
 }
