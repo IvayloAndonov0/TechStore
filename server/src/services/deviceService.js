@@ -14,7 +14,7 @@ export default {
         
     },
     getAll(){
-        const result = Device.find();
+        const result = Device.find().lean();
         return result;
     },
     getOne(id){
