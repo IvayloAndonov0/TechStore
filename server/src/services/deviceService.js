@@ -27,10 +27,10 @@ export default {
         if(device.owner.equals(userId)){
             throw new Error(`Cannot prefer own offer!`);
         }
-        if(device.preferrdList.includes(userId)){
+        if(device.preferedList.includes(userId)){
             throw new Error(`You already preffered this offer!`);
         }
-        device.preferrdList.push(userId);
+        device.preferedList.push(userId);
         return device.save();
     },
     async updateOne(deviceId,body,userId){

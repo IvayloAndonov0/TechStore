@@ -67,7 +67,7 @@ const deviceSchema = new Schema({
         type: Types.ObjectId,
         ref: `User`
     },
-    preferrdList:[{
+    preferedList:[{
         type: Types.ObjectId,
         ref: `User`
     }]

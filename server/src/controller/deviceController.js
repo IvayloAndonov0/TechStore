@@ -44,13 +44,17 @@ deviceRouter.get(`/all`, async (req, res) => {
         res.status(500).json({ error: error.message })
     }
 });
-deviceRouter.get(`/:id/prefer`, async (req, res) => {
+deviceRouter.post(`/:id/prefer`, async (req, res) => {
     const id = req.params.id;
-    const userId = req.user.id;
+    const {userId} = req.body
+    
+    
     try {
         const device = await deviceService.preferOne(id, userId);
-        res.redirect(`/device/${id}/details`);
+        
+        res.send(JSON.stringify({ message: 'Preffered successfully!' }));
     } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 });
 deviceRouter.post(`/:id/edit`, async (req, res) => {
@@ -66,17 +70,23 @@ deviceRouter.post(`/:id/edit`, async (req, res) => {
 });
 deviceRouter.post(`/:id/delete`, async (req, res) => {
     const id = req.params.id;
-    console.log(id);
     const userId = req.body;
-    console.log(`user: ${userId}`);
-    
-    
     try {
         const result = await deviceService.deleteOne(id,);
         res.send(JSON.stringify({ message: 'Deleted successfully!' }));
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
+});
+deviceRouter.post(`/created`,async (req,res) => {
+    const {userId} = req.body;
+    try{
+        const created = await deviceService.getUserDevices(userId);
+        res.send(JSON.stringify({created}));
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+
 });
 
 
