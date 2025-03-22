@@ -19,5 +19,11 @@ export default {
     },
     deleteOne(id,userId,token){
         return requester.post(baseUrl+`/${id}/delete`,userId,token)
+    },
+    getCreated(userId,token){
+        return requester.post(baseUrl+`/created`,userId,token);
+    },
+    preferOne(id,userId,token){
+        return requester.post(baseUrl+`/${id}/prefer`,userId,token)
     }
 }

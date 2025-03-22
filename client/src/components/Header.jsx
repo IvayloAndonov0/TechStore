@@ -15,9 +15,9 @@ export default function Header() {
                             <li><Link to="/about">About</Link></li>
                             {isAuthenticated && (
                                 <>
-                                    <li><Link to="/profile">Profile</Link></li>
                                     <li><Link to="/tech/create">Create Offer</Link></li>
                                     <li><Link to="/auth/logout">Logout</Link></li>
+                                    <li><Link to="/profile">Profile</Link></li>
                                 </>
                             )} 
                             {!isAuthenticated && (
