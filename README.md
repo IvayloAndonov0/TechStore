@@ -1,6 +1,7 @@
 # TechStore
 
 TechStore is a full-stack React application that serves as a marketplace for technology-related products. It features both public and private sections, allowing users to browse tech offers, create their own, and interact with the platform dynamically. The app communicates with a custom Express.js server using MongoDB for data storage.
+https://techstore2025.vercel.app/
 
 ## Features
 
