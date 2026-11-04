@@ -1,7 +1,7 @@
-import Device from "../models/Device.js"
+import Device from "../models/Device.js";
+
 
 export default {
-
     create(newDevice){
        const result =  Device.create({
             ...newDevice,

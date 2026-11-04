@@ -8,7 +8,9 @@ const app = express();
 
 try {
     const uri= process.env.URI;
+    
     await mongoose.connect(uri);
+    mongoose.connection.useDb('TechStore');
     console.log(`DB connected successfuly!`);
     
     
@@ -32,4 +34,4 @@ app.use(routes);
 
 
 
-app.listen(5000,()=>console.log(`Server is listening on http://localhost:5000......`));
+app.listen(5001,()=>console.log(`Server is listening on http://localhost:5000......`));
